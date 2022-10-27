@@ -1,0 +1,65 @@
+nav{
+    background-color: rgb(255, 255, 255); 
+    display: flex; /*su dung cho cha co nhieu con, se cach deu cac con*/
+    justify-content: space-around;
+    align-items: center;
+    border: solid grey 3px;
+    height: 40px;
+}
+nav a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    width: 25%;
+    height: 100%;
+    line-height: 190%;
+    text-align: center;
+    color: brown;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    color: blue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+td,tr{
+    height: 50px;
+    vertical-align: top;
+}
+table.viewlist td,tr{
+    vertical-align: middle;
+}
+.content{
+    text-align: center;
+}
+input[type=text],[type=password]{
+    width: 100%;
+}
+input[type=submit]{
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: none;
+    background-color: antiquewhite;
+}
+.alert{
+    color: red;
+}
+button#trash{
+    color: white;
+    background-color: rgb(214, 96, 96);
+    border: solid red;
+    border-radius: 5px;
+}
+button#update{
+    color: white;
+    background-color: rgb(69, 134, 208);
+    border: solid rgb(10, 10, 120);
+    border-radius: 5px;
+}

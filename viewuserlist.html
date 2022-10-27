@@ -1,0 +1,59 @@
+<h1>USER SECRET DATA</h1>
+<table border="1" class="viewlist">
+    <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Address</th>
+    </tr>
+    <tr ng-repeat="u in list" class="content">
+        <td>{{$index+1}}</td>
+        <td ng-model="myName">{{u.name}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.pass}}</td>
+        <td>{{u.address}}</td>
+        <td>
+            <button ng-click="showupdate(u)" id="update">Edit</button>
+            <button ng-click="remove(u)" id="trash">Delete</button>
+        </td>
+    </tr>
+</table>
+<br>
+<h2 ng-show="showUpdate">Update Form</h2>
+<form name="myUpdate" ng-show="showUpdate" ng-submit="update()">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" name="myName" pattern="[A-Za-z\s]+" ng-model="myName" required>
+                <div ng-show="myUpdate.myName.$error.required && myUpdate.myName.$dirty" class="alert">Name must be entered</div>
+                <div ng-show="myUpdate.myName.$error.pattern && myUpdate.myName.$dirty" class="alert">Name must be Latin characters only</div>
+            </td>
+        </tr>
+        <tr>
+            <td>User name</td>
+            <td><input type="text" name="myUname" ng-model="myUname"></td>
+        </tr>
+        <tr>
+            <td>New password</td>
+            <td>
+                <input type="password" name="pass" ng-model="pass">
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td>
+                <input type="password" name="confirm" ng-model="confirm" ng-blur="passCheck()">
+                <div class="alert" ng-show="show">Confirmed password must match Password!</div>
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" name="myAddress" ng-model="myAddress"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;"><input type="submit" value="Update"></td>
+        </tr>
+    </table>
+</form>

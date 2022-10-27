@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Project</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+<body ng-app="helloWorld">
+    <nav id="menu">
+        <a href="#/" id="aHome">Home</a>
+        <a href="#!Signup" id="aSignup">Sign up</a>
+        <a href="#!Login" id="aLogin">Log in</a>
+        <a href="#!View" id="aViewUserList">View User List</a>
+    </nav>
+
+    <div ng-view>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+    <script>
+        var app = angular.module("helloWorld", ["ngRoute"]);
+
+        app.config(function($routeProvider)  
+        {
+            $routeProvider
+            .when("/",{
+                templateUrl:"home.html",
+                controller: "homeController"
+            })
+            .when("/Signup",{
+                templateUrl:"signup.html",
+                controller: "signupController"
+            })
+            .when("/Login",{
+                templateUrl:"login.html",
+                controller: "loginController"
+            })
+            .when("/View",{
+                templateUrl:"viewuserlist.html",
+                controller: "viewController"
+            })
+        });
+
+        app.run(function($rootScope, $http)
+        {
+            $http.get("user.json").then(function(response)
+            {
+                $rootScope.list = response.data.userList;
+            })
+        });
+
+        app.controller("signupController", function($scope)
+        {
+            $scope.show = false;
+            $scope.passCheck = function()
+            {
+                if ($scope.pass != $scope.confirm)
+                {
+                    $scope.show=true;
+                }
+                else{
+                    $scope.show=false;
+                }
+            }
+
+            $scope.addUser = function()
+            {
+                var nUser = {"name":$scope.myName, "username":$scope.myUname, "pass":$scope.pass, "address":$scope.myAddress};
+
+                $scope.list.push(nUser);
+                alert("Registered successfully!");
+            }
+        })
+
+        app.controller("viewController", function($scope)
+        {
+            $scope.remove = function(item)
+            {
+                // alert('HIIIII');
+                var index = $scope.list.indexOf(item);
+                $scope.list.splice(index, 1);
+                alert('Remove successfully');
+            }
+
+            $scope.showUpdate=false;
+            $scope.showupdate = function(item)
+            {
+                var index = $scope.list.indexOf(item);
+                $scope.showUpdate=true;
+                $scope.myName = item.name;
+                $scope.myUname = item.username;
+                $scope.pass = item.pass;
+                $scope.confirm = item.pass;
+                $scope.myAddress = item.address;
+                $scope.update = function()
+                {
+                    $scope.list[index].name = $scope.myName;
+                    $scope.list[index].username = $scope.myUname;
+                    $scope.list[index].pass = $scope.pass;
+                    $scope.list[index].address = $scope.myAddress;
+                    alert('Update successfully');
+                    $scope.showUpdate=false;
+                }
+            }
+            $scope.update = function(item)
+                {
+                    alert(item.pass);
+                    item.name = $scope.myName;
+                    // item.username = $scope.myUname;
+                }
+
+            $scope.passCheck = function()
+            {
+                if ($scope.pass != $scope.confirm)
+                {
+                    $scope.show=true;
+                }
+                else{
+                    $scope.show=false;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

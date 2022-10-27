@@ -1,0 +1,9 @@
+{
+    "userList":[
+        {"name":"An", "username":"an111", "pass":"111an", "address":"LA"},
+        {"name":"Binh", "username":"binh222", "pass":"222binh" , "address":"Danang"},
+        {"name":"Cuong", "username":"cuong333", "pass":"333cuong", "address":""},
+        {"name":"Dat", "username":"dat444", "pass":"444dat", "address":""},
+        {"name":"Giang", "username":"giang555", "pass":"555giang", "address":"HCMC"}
+    ]
+}
